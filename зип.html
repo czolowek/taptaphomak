@@ -1,0 +1,146 @@
+!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TapKraken 🐙</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            background-color: #1a1a1a;
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            color: #ffcc00;
+            margin-top: 20px;
+            font-size: 3rem;
+            animation: fadeIn 2s ease-in-out;
+        }
+        #game-container {
+            margin: 20px auto;
+            padding: 20px;
+            max-width: 600px;
+            background-color: #2a2a2a;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            animation: slideIn 1s ease-in-out;
+        }
+        #kraken {
+            width: 300px;
+            height: auto;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        #kraken:active {
+            transform: scale(1.1);
+        }
+        #menu-buttons button {
+            font-size: 18px;
+            padding: 10px 20px;
+            margin: 10px;
+            background-color: #ff6600;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.2s, background-color 0.3s;
+        }
+        #menu-buttons button:hover {
+            background-color: #cc5500;
+            transform: scale(1.1);
+        }
+        #shop-modal, #puzzle-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        #shop-content, #puzzle-content {
+            background-color: #2a2a2a;
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+            color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+        }
+        .shop-item {
+            margin: 10px;
+            padding: 10px;
+            background-color: #333;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+        .shop-item:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body>
+    <h1>TapKraken 🐙</h1>
+    <div id="game-container">
+        <p>Очки: <span id="score">0</span></p>
+        <img id="kraken" src="data:image/png;base64,{{GENERATED_KRAKEN_IMAGE}}" alt="Kraken" onclick="tap()"> 
+        <div id="menu-buttons">
+            <button onclick="openPuzzle()">Головоломка</button>
+            <button onclick="openShop()">Магазин</button>
+        </div>
+    </div>
+    <div id="shop-modal">
+        <div id="shop-content">
+            <h2>Магазин</h2>
+            <div class="shop-item" onclick="buyUpgrade(1, 10)">Улучшение 1 (+1 очко/тап) - 10 очков</div>
+            <div class="shop-item" onclick="buyUpgrade(5, 50)">Улучшение 2 (+5 очков/тап) - 50 очков</div>
+            <button onclick="closeShop()">Закрыть</button>
+        </div>
+    </div>
+    <div id="puzzle-modal">
+        <div id="puzzle-content">
+            <h2>Головоломка</h2>
+            <img src="data:image/png;base64,{{GENERATED_PUZZLE_IMAGE}}" alt="Puzzle">
+            <button onclick="closePuzzle()">Закрыть</button>
+        </div>
+    </div>
+    <script>
+        let score = 0;
+        let tapPower = 1;
+
+        function tap() {
+            score += tapPower;
+            document.getElementById("score").innerText = score;
+        }
+        function openPuzzle() {
+            document.getElementById("puzzle-modal").style.display = "flex";
+        }
+        function closePuzzle() {
+            document.getElementById("puzzle-modal").style.display = "none";
+        }
+        function openShop() {
+            document.getElementById("shop-modal").style.display = "flex";
+        }
+        function closeShop() {
+            document.getElementById("shop-modal").style.display = "none";
+        }
+        function buyUpgrade(power, cost) {
+            if (score >= cost) {
+                score -= cost;
+                tapPower += power;
+                document.getElementById("score").innerText = score;
+                alert("Улучшение куплено! Теперь вы получаете больше очков за тап.");
+            } else {
+                alert("Недостаточно очков!");
+            }
+        }
+    </script>
+</body>
+</html>

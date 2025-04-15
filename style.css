@@ -1,0 +1,299 @@
+/* Ваш оригинальный код */
+body {
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+    background-color: #1a1a1a;
+    color: #ffffff;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    color: #ffcc00;
+    margin-top: 20px;
+    font-size: 3rem;
+}
+
+#game-container {
+    margin: 20px auto;
+    padding: 20px;
+    max-width: 600px;
+    background-color: #2a2a2a;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+#kraken {
+    width: 300px;
+    height: auto;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+#kraken:active {
+    transform: scale(1.1);
+}
+
+#menu-buttons button {
+    font-size: 18px;
+    padding: 10px 20px;
+    margin: 10px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.3s;
+}
+
+#menu-buttons button:hover {
+    background-color: #0056b3;
+    transform: scale(1.1);
+}
+
+#menu-buttons button:active {
+    background-color: #003f7f;
+}
+
+#shop-modal, #puzzle-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+#shop-content, #puzzle-content {
+    background-color: #2a2a2a;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+    color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+.shop-item {
+    margin: 10px;
+    padding: 10px;
+    background-color: #333;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.shop-item:hover {
+    background-color: #555;
+}
+
+#puzzle-container {
+    display: grid;
+    grid-template-columns: repeat(6, 50px);
+    grid-template-rows: repeat(6, 50px);
+    gap: 5px;
+    justify-content: center;
+    margin: 20px auto;
+}
+
+.car {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.car.red {
+    background-color: #FF4D4D;
+}
+
+.car.blue {
+    background-color: #007BFF;
+}
+
+.car.green {
+    background-color: #00FF00;
+}
+
+.car:hover {
+    transform: scale(1.1);
+}
+
+#close-puzzle {
+    display: block;
+    margin: 10px auto 0;
+    background-color: #ff4d4d;
+    color: white;
+}
+
+/* Новые стили */
+.splash-effect {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 0, 0.5);
+    border-radius: 50%;
+    animation: splash 1s ease-out;
+    pointer-events: none;
+}
+
+@keyframes splash {
+    from {
+        transform: scale(0);
+        opacity: 1;
+    }
+    to {
+        transform: scale(3);
+        opacity: 0;
+    }
+}
+
+/* Всплывающее уведомление */
+.notification {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    animation: fadeInOut 3s ease-in-out;
+}
+
+@keyframes fadeInOut {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    10%, 90% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+}
+
+/* Эффект сияния для осьминога */
+#kraken-container {
+    position: relative;
+    display: inline-block;
+}
+
+#kraken-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 0, 0, 0.5), transparent);
+    opacity: 0;
+    transition: opacity 0.3s, transform 0.3s;
+    transform: scale(0.8);
+    z-index: -1;
+}
+
+#kraken-container:active::after {
+    opacity: 1;
+    transform: scale(1.5);
+}
+
+/* Новый фон для страницы */
+body {
+    background: linear-gradient(135deg, #001a33, #330000); /* Синий-красный градиент */
+    color: #ffcccc; /* Светло-красный текст */
+}
+
+/* Новый стиль для заголовка */
+h1 {
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.7); /* Красное свечение */
+}
+
+/* Новый стиль для кнопок */
+#menu-buttons button {
+    background: linear-gradient(145deg, #003366, #330000); /* Синий-красный градиент */
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.5); /* Красное свечение */
+}
+
+#menu-buttons button:hover {
+    background: linear-gradient(145deg, #ff0000, #003366); /* Красно-синий градиент */
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.7); /* Усиленное свечение */
+}
+
+/* Убираем линию под интерфейсом */
+body {
+    margin: 0; /* Убираем отступы вокруг страницы */
+    padding: 0; /* Убираем внутренние отступы */
+    overflow-x: hidden; /* Убираем горизонтальную прокрутку */
+}
+
+#loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #1a1a1a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+    overflow: hidden; /* Убираем прокрутку */
+}
+
+#loading-image {
+    max-width: 90%; /* Ограничиваем ширину изображения */
+    width: 200px; /* Устанавливаем фиксированную ширину */
+    height: auto; /* Сохраняем пропорции */
+    animation: pulse 1.5s infinite; /* Анимация пульсации */
+}
+
+/* Анимация пульсации */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 0.8;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0.8;
+    }
+}
+
+/* Блокировка прокрутки при экране загрузки */
+body.loading {
+    overflow: hidden; /* Убираем прокрутку */
+}
+
+body.loading #game-container,
+body.loading h1 {
+    visibility: hidden; /* Скрываем содержимое */
+}
+
+
+#game-container {
+    margin: 0 auto; /* Центрируем контейнер */
+    padding: 20px;
+    max-width: 600px;
+    background: linear-gradient(145deg, #330000, #001a33); /* Красно-синий градиент */
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 0, 255, 0.5); /* Синее свечение */
+    border: none; /* Убираем границы */
+}
