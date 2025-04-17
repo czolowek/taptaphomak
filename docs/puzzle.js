@@ -141,9 +141,3 @@ function activateRGBGlowEffect() {
     });
 }
 
-window.addEventListener("DOMContentLoaded", function () {
-    const openPuzzleBtn = document.getElementById("open-puzzle-btn");
-    if (openPuzzleBtn) {
-        openPuzzleBtn.addEventListener("click", openPuzzle);
-    }
-});
