@@ -25,6 +25,7 @@
 
             <div id="menu-buttons">
                 <button onclick="openShop()">Магазин</button>
+                <!-- Эта кнопка запускает головоломку -->
                 <button id="open-puzzle-btn">Головоломка</button>
             </div>
         </div>
@@ -54,7 +55,7 @@
                 <div class="parking-lot" id="puzzle-container">
                     <!-- Машины рендерятся через JS -->
                 </div>
-                <button id="close-puzzle" onclick="closePuzzle()">Назад</button>
+                <button id="close-puzzle">Назад</button>
             </div>
         </div>
 
@@ -73,10 +74,34 @@
         </div>
     </div>
 
-    <!-- УДАЛЕНО: лишняя кнопка "Головоломка", которая вызывала баг -->
-    <!-- <button id="puzzle-button">Головоломка</button> -->
+    <!-- УДАЛЕНА лишняя кнопка (второй "Головоломка") -->
 
+    <!-- Подключение скриптов -->
     <script src="script.js"></script>
     <script src="puzzle.js"></script>
+
+    <!-- Этот скрипт гарантирует работу кнопки "Головоломка" -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const openPuzzleBtn = document.getElementById("open-puzzle-btn");
+            const puzzleModal = document.getElementById("puzzle-modal");
+            const mainContent = document.getElementById("main-content");
+            const closePuzzleBtn = document.getElementById("close-puzzle");
+
+            if (openPuzzleBtn && puzzleModal && mainContent) {
+                openPuzzleBtn.addEventListener("click", () => {
+                    mainContent.style.display = "none";
+                    puzzleModal.style.display = "block";
+                });
+            }
+
+            if (closePuzzleBtn) {
+                closePuzzleBtn.addEventListener("click", () => {
+                    puzzleModal.style.display = "none";
+                    mainContent.style.display = "block";
+                });
+            }
+        });
+    </script>
 </body>
 </html>
