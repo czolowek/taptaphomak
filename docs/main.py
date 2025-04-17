@@ -24,7 +24,9 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
         print(f"Ошибка в команде /start: {e}")
 
 def run_server():
-    # Запуск локального сервера для игры
+    # Устанавливаем текущую директорию на папку с файлами
+    os.chdir("c:/Users/ProLogix/Desktop/taptaphomak/docs")
+    
     PORT = 5000
     Handler = http.server.SimpleHTTPRequestHandler
 

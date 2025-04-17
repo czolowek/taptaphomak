@@ -8,28 +8,33 @@ let puzzleTimer = document.getElementById("timer");
 let puzzleLevels = document.getElementById("puzzle-levels");
 let puzzleCars = [];
 
+// Проверка на существование элементов, чтобы не было ошибок при загрузке
+if (openPuzzleBtn) {
+    openPuzzleBtn.addEventListener("click", openPuzzle); // Кнопка для открытия головоломки
+}
+if (closePuzzleBtn) {
+    closePuzzleBtn.addEventListener("click", closePuzzle); // Кнопка для закрытия головоломки
+}
+
 // Функция для открытия головоломки
 function openPuzzle() {
-    puzzleModal.style.display = "block";
-    document.getElementById("main-content").style.display = "none";
+    if (puzzleModal) puzzleModal.style.display = "block";
+    const mainContent = document.getElementById("main-content");
+    if (mainContent) mainContent.style.display = "none";
     resetPuzzle();  // Сбросить настройки головоломки перед её открытием
 }
 
 // Функция для закрытия головоломки
 function closePuzzle() {
-    puzzleModal.style.display = "none";
-    document.getElementById("main-content").style.display = "block";
+    if (puzzleModal) puzzleModal.style.display = "none";
+    const mainContent = document.getElementById("main-content");
+    if (mainContent) mainContent.style.display = "block";
 }
-
-// Добавляем обработчик для кнопки "Головоломка"
-openPuzzleBtn.addEventListener("click", openPuzzle);
-
-// Добавляем обработчик для кнопки "Назад" в головоломке
-closePuzzleBtn.addEventListener("click", closePuzzle);
 
 // Функция для запуска головоломки с определённым уровнем сложности
 function startPuzzle(level) {
     // Открытие контейнера для машин
+    if (!puzzleContainer) return;
     puzzleContainer.innerHTML = "";
     createPuzzle(level);
     startTimer();
@@ -52,23 +57,33 @@ function createPuzzle(level) {
         let car = document.createElement("div");
         car.classList.add("car", color);
         car.setAttribute("data-id", index);
+        car.style.left = "0px"; // начальная позиция
         puzzleContainer.appendChild(car);
+
+        // Добавить обработчик перемещения
+        car.addEventListener("click", (event) => {
+            let carElement = event.target;
+            let currentPosition = carElement.style.left || "0px";
+            let newPosition = parseInt(currentPosition) + 50 + "px";
+            carElement.style.left = newPosition;
+        });
     });
 
     // Добавление анимации с подсветкой
     addCarGlowEffect();
+    activateRGBGlowEffect();
 }
 
 // Функция для запуска таймера
 let timerInterval;
 function startTimer() {
     let timeLeft = 60; // Время в секундах
-    puzzleTimer.textContent = timeLeft;
+    if (puzzleTimer) puzzleTimer.textContent = timeLeft;
 
     // Запускаем таймер
     timerInterval = setInterval(() => {
         timeLeft--;
-        puzzleTimer.textContent = timeLeft;
+        if (puzzleTimer) puzzleTimer.textContent = timeLeft;
         if (timeLeft <= 0) {
             clearInterval(timerInterval);
             alert("Время вышло!");
@@ -80,36 +95,31 @@ function startTimer() {
 // Функция для сброса головоломки
 function resetPuzzle() {
     clearInterval(timerInterval); // Останавливаем старый таймер, если был
-    puzzleTimer.textContent = 60; // Сбросить таймер
+    if (puzzleTimer) puzzleTimer.textContent = 60; // Сбросить таймер
+    if (puzzleContainer) puzzleContainer.innerHTML = ""; // Очистить контейнер
 }
 
-// Функция для открытия головоломки с машинками
+// --- Расширение с головоломкой машинок (оставляем старое) ---
 function openCarPuzzle() {
-    carPuzzleModal.style.display = "block";
-    document.getElementById("main-content").style.display = "none";
+    if (carPuzzleModal) carPuzzleModal.style.display = "block";
+    const mainContent = document.getElementById("main-content");
+    if (mainContent) mainContent.style.display = "none";
 }
 
-// Функция для закрытия головоломки с машинками
 function closeCarPuzzle() {
-    carPuzzleModal.style.display = "none";
-    document.getElementById("main-content").style.display = "block";
+    if (carPuzzleModal) carPuzzleModal.style.display = "none";
+    const mainContent = document.getElementById("main-content");
+    if (mainContent) mainContent.style.display = "block";
 }
 
 // Функция для начала игры с машинками
-document.getElementById("start-car-puzzle-btn").addEventListener("click", () => {
-    alert("Начинаем головоломку с машинками!");
-    closeCarPuzzle();
-});
-
-// Функция для перемещения машинок (например, для головоломки с парковкой)
-document.querySelectorAll(".car").forEach(car => {
-    car.addEventListener("click", (event) => {
-        let carElement = event.target;
-        let currentPosition = carElement.style.left || "0px";
-        let newPosition = parseInt(currentPosition) + 50 + "px";
-        carElement.style.left = newPosition;
+let carPuzzleStartBtn = document.getElementById("start-car-puzzle-btn");
+if (carPuzzleStartBtn) {
+    carPuzzleStartBtn.addEventListener("click", () => {
+        alert("Начинаем головоломку с машинками!");
+        closeCarPuzzle();
     });
-});
+}
 
 // Функция для добавления эффекта подсветки на машины
 function addCarGlowEffect() {
@@ -135,6 +145,3 @@ function activateRGBGlowEffect() {
         });
     });
 }
-
-// Включаем эффект подсветки для машин
-activateRGBGlowEffect();
