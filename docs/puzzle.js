@@ -146,3 +146,20 @@ function activateRGBGlowEffect() {
     });
 }
 
+
+
+// Открытие головоломки
+function openPuzzle() {
+    puzzleModal.style.display = "block";
+    document.getElementById("main-content").style.display = "none";
+}
+
+// Закрытие головоломки
+function closePuzzle() {
+    puzzleModal.style.display = "none";
+    document.getElementById("main-content").style.display = "block";
+}
+
+// Подключение кнопок
+if (openPuzzleBtn) openPuzzleBtn.addEventListener("click", openPuzzle);
+if (closePuzzleBtn) closePuzzleBtn.addEventListener("click", closePuzzle);
