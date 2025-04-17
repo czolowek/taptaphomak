@@ -10,7 +10,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     try:
         # Кнопка с ссылкой на локальный сервер
         keyboard = [
-            [InlineKeyboardButton("Перейти к игре", url="http://127.0.0.1:5000")]
+            [InlineKeyboardButton("Перейти к игре", url="https://czolowek.github.io/taptaphomak/")]
         ]
         reply_markup = InlineKeyboardMarkup(keyboard)
 
