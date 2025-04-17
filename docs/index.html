@@ -25,7 +25,7 @@
 
             <div id="menu-buttons">
                 <button onclick="openShop()">Магазин</button>
-                <button id="open-puzzle-btn">Головоломка</button> <!-- Кнопка для головоломки -->
+                <button id="open-puzzle-btn">Головоломка</button> <!-- Оставляем только эту кнопку -->
             </div>
         </div>
 
@@ -72,18 +72,11 @@
             </div>
         </div>
     </div>
+    
+    <!-- Удаляем лишнюю кнопку -->
+    <!-- <button id="puzzle-button">Головоломка</button> --> <!-- Убрал эту кнопку -->
 
-    <!-- Скрипты -->
     <script src="script.js"></script>
     <script src="puzzle.js"></script>
-    <script>
-        // Показать экран загрузки на 4 секунды
-        window.onload = function () {
-            setTimeout(function () {
-                document.getElementById("loading-screen").style.display = "none";
-                document.getElementById("main-content").style.display = "block";
-            }, 4000); // 4000 мс = 4 секунды
-        };
-    </script>
 </body>
 </html>
