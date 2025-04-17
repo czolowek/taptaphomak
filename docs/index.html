@@ -25,7 +25,7 @@
 
             <div id="menu-buttons">
                 <button onclick="openShop()">Магазин</button>
-                <button id="open-puzzle-btn">Головоломка</button>
+                <button id="open-puzzle-btn">Головоломка</button> <!-- Эта кнопка работает -->
             </div>
         </div>
 
@@ -73,10 +73,14 @@
         </div>
     </div>
 
-    <!-- УДАЛЕНО: лишняя кнопка "Головоломка", которая вызывала баг -->
-    <!-- <button id="puzzle-button">Головоломка</button> -->
-
     <script src="script.js"></script>
     <script src="puzzle.js"></script>
+    <script>
+        // Показать основной экран после загрузки
+        window.onload = function () {
+            document.getElementById("loading-screen").style.display = "none";
+            document.getElementById("main-content").style.display = "block";
+        };
+    </script>
 </body>
 </html>
