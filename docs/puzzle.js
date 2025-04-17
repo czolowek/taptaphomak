@@ -22,10 +22,10 @@ function closePuzzle() {
 }
 
 // Добавляем обработчик для кнопки "Головоломка"
-openPuzzleBtn.addEventListener("click", openPuzzle());
+openPuzzleBtn.addEventListener("click", openPuzzle);
 
 // Добавляем обработчик для кнопки "Назад" в головоломке
-closePuzzleBtn.addEventListener("click", closePuzzle());
+closePuzzleBtn.addEventListener("click", closePuzzle);
 
 // Функция для запуска головоломки с определённым уровнем сложности
 function startPuzzle(level) {
